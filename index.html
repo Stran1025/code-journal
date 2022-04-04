@@ -16,44 +16,64 @@
 </head>
 <body>
   <header>
-    <div class="col-full">
-      <h1>Code Journal</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-full">
+          <p>Code Journal</p>
+        </div>
+      </div>
     </div>
   </header>
   <main>
     <div class="container">
-      <div class="row">
-        <div class="col-full">
-          <h1 class="action-name">New Entry</h1>
+      <form id="input-form" class="">
+        <div class="row">
+          <div class="col-full">
+            <h1 class="action-name">New Entry</h1>
+          </div>
         </div>
-        <div class="col-full col-half">
-          <img class="width-full" src="/images/placeholder-image-square.jpg">
-        </div>
-        <div class="col-full col-half">
-          <form>
-            <label> Title
-              <input class="block" type="text">
+        <div class="row">
+          <div class="col-half spacing">
+            <img id="photo-display" class="width-full" src="/images/placeholder-image-square.jpg">
+          </div>
+          <div class="col-half spacing" data-view="entry-form-title-url">
+            <label class="font-20">
+              Title
+              <input
+                id="title"
+                class="block width-full input-border spacing"
+                type="text" required
+              >
             </label>
-            <label> Photo URL
-              <input class="block" type="url">
+            <label class="font-20">
+              Photo URL
+              <input
+                class="block width-full input-border spacing"
+                id="url"
+                type="url"
+                required
+              >
             </label>
-          </form>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-full">
-          <form>
-            <label> Notes
-              <textarea class="block"></textarea>
+        <div class="row">
+          <div class="col-full" data-view="entry-form-notes">
+            <label class="font-20">
+              Notes
+              <textarea
+                id="note"
+                class="width-full input-border spacing"
+                required>
+              </textarea>
             </label>
-          </form>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-full text-right">
-          <button class="">SAVE</button>
+        <div class="row">
+          <div class="col-full text-right">
+            <button id="submit" class="button font-20" type="submit">SAVE</button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </main>
   <script src="js/data.js"></script>

@@ -9,3 +9,49 @@
 .text-right {
   text-align: right;
 }
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+header {
+  background-color: rgb(86, 43, 129);
+  color: white;
+  font-family: "Proza Libre", sans-serif;
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.input-border {
+  border: 1px solid #b6b6b6;
+  border-radius: 4px;
+}
+
+input.input-border {
+  height: 40px;
+}
+
+textarea.input-border {
+  height: 150px;
+}
+
+.spacing {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+main {
+  background-color: rgb(240 240 240);
+}
+
+.button {
+  background-color: rgb(86 43 129);
+  color: white;
+  border: 1px solid rgb(86 43 129);
+  border-radius: 4px;
+  padding: 5px 15px;
+}
