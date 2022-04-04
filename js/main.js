@@ -5,7 +5,7 @@ var $photoDisplay = document.querySelector('#photo-display');
 var $urlInput = document.querySelector('#url');
 var $form = document.querySelector('#input-form');
 
-$urlInput.addEventListener('focusout', updatePhoto);
+$urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 
 function saveEntry(event) {
@@ -17,11 +17,12 @@ function saveEntry(event) {
   obj.notes = $form.elements.note.value;
   data.nextEntryId++;
   data.entries.push(obj);
+  $form.elements.title.value = '';
+  $form.elements.url.value = '';
+  $form.elements.note.value = '';
+  $photoDisplay.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
 
 function updatePhoto(event) {
-  if (event.target.value === '') {
-    return;
-  }
   $photoDisplay.setAttribute('src', event.target.value);
 }
