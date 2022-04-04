@@ -26,7 +26,7 @@
     </div>
   </header>
   <main>
-    <div class="container">
+    <div class="container hidden data-view=" entry-form">
       <form id="input-form" class="">
         <div class="row">
           <div class="col-full">
@@ -37,7 +37,7 @@
           <div class="col-half spacing">
             <img id="photo-display" class="width-full" src="/images/placeholder-image-square.jpg">
           </div>
-          <div class="col-half spacing" data-view="entry-form-title-url">
+          <div class="col-half spacing">
             <label class="font-20">
               Title
               <input
@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-full" data-view="entry-form-notes">
+          <div class="col-full">
             <label class="font-20">
               Notes
               <textarea
@@ -75,6 +75,17 @@
           </div>
         </div>
       </form>
+    </div>
+    <div class="container" data-view="entries">
+      <ul class="row">
+        <li class="col-half">
+          <img src="images/favicon.ico">
+        </li>
+        <li class="col-half">
+          <h2>Test</h2>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque architecto pariatur quas. Cumque libero amet vitae ex, eaque veritatis! Repellat animi ab tenetur nemo. Repellat rerum voluptatum eligendi officiis laudantium.</p>
+        </li>
+      </ul>
     </div>
   </main>
   <script src="js/data.js"></script>

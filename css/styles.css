@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 .width-full {
   width: 100%;
 }
@@ -58,4 +62,8 @@ main {
   border: 1px solid rgb(86 43 129);
   border-radius: 4px;
   padding: 5px 15px;
+}
+
+li {
+  list-style: none;
 }
