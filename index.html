@@ -22,17 +22,17 @@
   </header>
   <main>
     <div class="container">
-      <div class="row">
-        <div class="col-full">
-          <h1 class="action-name">New Entry</h1>
+      <form class="width-full">
+        <div class="row">
+          <div class="col-full">
+            <h1 class="action-name">New Entry</h1>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-half">
-          <img class="width-full" src="/images/placeholder-image-square.jpg">
-        </div>
-        <div class="col-half" data-view="entry-form-title-url">
-          <form class="width-full">
+        <div class="row">
+          <div class="col-half">
+            <img class="width-full" src="/images/placeholder-image-square.jpg">
+          </div>
+          <div class="col-half" data-view="entry-form-title-url">
             <label class="width-full">
               Title
               <input class="block width-full" type="text" required>
@@ -41,24 +41,22 @@
               Photo URL
               <input class="block width-full" type="url" required>
             </label>
-          </form>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-full" data-view="entry-form-notes">
-          <form>
+        <div class="row">
+          <div class="col-full" data-view="entry-form-notes">
             <label>
               Notes
               <textarea class="width-full" required></textarea>
             </label>
-          </form>
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-full text-right">
-          <button>SAVE</button>
+        <div class="row">
+          <div class="col-full text-right">
+            <button>SAVE</button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </main>
   <script src="js/data.js"></script>
