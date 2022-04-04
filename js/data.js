@@ -6,9 +6,9 @@ var data = {
   editing: null,
   nextEntryId: 1
 };
-
-if (localStorage.getItem('entry-data') !== null) {
-  data = JSON.parse(localStorage.getItem('entry-data'));
+var previousData = localStorage.getItem('entry-data');
+if (previousData !== null) {
+  data = JSON.parse(previousData);
 }
 
 window.addEventListener('beforeunload', saveData);

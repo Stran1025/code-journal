@@ -16,10 +16,8 @@ function saveEntry(event) {
   obj.photoURL = $form.elements.url.value;
   obj.notes = $form.elements.note.value;
   data.nextEntryId++;
-  data.entries.push(obj);
-  $form.elements.title.value = '';
-  $form.elements.url.value = '';
-  $form.elements.note.value = '';
+  data.entries.unshift(obj);
+  $form.reset();
   $photoDisplay.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
 
