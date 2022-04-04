@@ -11,9 +11,12 @@ $form.addEventListener('submit', saveEntry);
 function saveEntry(event) {
   event.preventDefault();
   var obj = {};
+  obj.entryId = data.nextEntryId;
   obj.title = $form.elements.title.value;
   obj.photoURL = $form.elements.url.value;
   obj.notes = $form.elements.note.value;
+  data.nextEntryId++;
+  data.entries.push(obj);
 }
 
 function updatePhoto(event) {
