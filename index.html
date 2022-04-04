@@ -16,8 +16,45 @@
 </head>
 <body>
   <header>
+    <div class="col-full">
+      <h1>Code Journal</h1>
+    </div>
   </header>
   <main>
+    <div class="container">
+      <div class="row">
+        <div class="col-full">
+          <h1 class="action-name">New Entry</h1>
+        </div>
+        <div class="col-full col-half">
+          <img class="width-full" src="/images/placeholder-image-square.jpg">
+        </div>
+        <div class="col-full col-half">
+          <form>
+            <label> Title
+              <input class="block" type="text">
+            </label>
+            <label> Photo URL
+              <input class="block" type="url">
+            </label>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-full">
+          <form>
+            <label> Notes
+              <textarea class="block"></textarea>
+            </label>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-full text-right">
+          <button class="">SAVE</button>
+        </div>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
