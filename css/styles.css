@@ -13,3 +13,39 @@
 .wrap {
   flex-wrap: wrap;
 }
+
+header {
+  background-color: rgb(86, 43, 129);
+  color: white;
+  font-family: "Proza Libre", sans-serif;
+  font-size: 24px;
+  font-weight: lighter;
+}
+
+.input-border {
+  border: 1px solid #b6b6b6;
+  border-radius: 4px;
+}
+
+input.input-border {
+  height: 40px;
+}
+
+textarea.input-border {
+  height: 150px;
+}
+
+.spacing {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.subscript {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+main {
+  background-color: rgb(240 240 240);
+}
