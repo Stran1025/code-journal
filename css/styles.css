@@ -40,12 +40,18 @@ textarea.input-border {
   margin-bottom: 20px;
 }
 
-.subscript {
-  color: black;
-  font-weight: bold;
+.font-20 {
   font-size: 20px;
 }
 
 main {
   background-color: rgb(240 240 240);
+}
+
+.button {
+  background-color: rgb(86 43 129);
+  color: white;
+  border: 1px solid rgb(86 43 129);
+  border-radius: 4px;
+  padding: 5px 15px;
 }
