@@ -9,6 +9,7 @@ var $tabsContainer = document.querySelector('#tabs');
 var $tab = document.querySelectorAll('.tab');
 var $view = document.querySelectorAll('.view');
 var $newEntryButton = document.querySelector('#new-entry-button');
+var editedEntryId = 0;
 
 $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
@@ -27,12 +28,22 @@ function editEntry(event) {
       break;
     }
   }
+  editedEntryId = event.target.getAttribute('data-edit-id');
   switchToForm(data.editing);
 }
 
 function saveEntry(event) {
   event.preventDefault();
   var obj = {};
+  if (data.editing !== null) {
+    obj.title = $form.elements.title.value;
+    obj.photoURL = $form.elements.url.value;
+    obj.notes = $form.elements.note.value;
+    obj.entryId = editedEntryId;
+    editedEntryId = 0;
+    displayNewEntry(obj);
+    return;
+  }
   obj.entryId = data.nextEntryId;
   obj.title = $form.elements.title.value;
   obj.photoURL = $form.elements.url.value;
@@ -78,7 +89,6 @@ function createLi(obj) {
   $h2.textContent = obj.title;
   $img.setAttribute('src', obj.photoURL);
   $icon.setAttribute('data-edit-id', obj.entryId);
-  $li.setAttribute('data-entry-id', obj.entryId);
 
   $li.className = 'row';
   $imgDiv.className = 'col-half';
@@ -86,6 +96,7 @@ function createLi(obj) {
   $img.className = 'width-full';
   $icon.className = 'fas fa-pen text-right center-height';
   $headerDiv.className = 'flex separate-content';
+  $li.classList.add('entry-' + obj.entryId);
 
   $headerDiv.appendChild($h2);
   $headerDiv.appendChild($icon);
@@ -98,6 +109,14 @@ function createLi(obj) {
 }
 
 function displayNewEntry(obj) {
+  if (data.editing !== null) {
+    var oldLiElement = document.querySelector('.entry-' + obj.entryId);
+    var editedLiElement = createLi(obj);
+    oldLiElement.replaceWith(editedLiElement);
+    $form.reset();
+    $photoDisplay.setAttribute('src', 'images/placeholder-image-square.jpg');
+    return;
+  }
   var liElement = createLi(obj);
   $entriesContainer.appendChild(liElement);
   var noEntry = document.querySelector('.no-entry');
