@@ -10,6 +10,11 @@
   width: 100%;
 }
 
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
 .block {
   display: block;
 }
@@ -82,4 +87,16 @@ a:hover {
 
 .divider {
   border-right: solid 2px black;
+}
+
+.flex {
+  display: flex;
+}
+
+.separate-content {
+  justify-content: space-between;
+}
+
+.center-height {
+  align-self: center;
 }

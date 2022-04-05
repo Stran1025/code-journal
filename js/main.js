@@ -42,7 +42,10 @@ function createLi(obj) {
   //       <img src=obj.url>
   //     </div>
   //     <div class="col-half">
-  //       <h2>obj.title</h2>
+  //       <div>
+  //         <h2>obj.title</h2>
+  //         <img src= edit-icon.png>
+  //       </div>
   //       <p>obj.note</p>
   //     </div>
   //   </li>
@@ -51,20 +54,27 @@ function createLi(obj) {
   var $li = document.createElement('li');
   var $imgDiv = document.createElement('div');
   var $textDiv = document.createElement('div');
+  var $headerDiv = document.createElement('div');
   var $img = document.createElement('img');
   var $h2 = document.createElement('h2');
+  var $icon = document.createElement('img');
   var $p = document.createElement('p');
 
   $p.textContent = obj.notes;
   $h2.textContent = obj.title;
   $img.setAttribute('src', obj.photoURL);
+  $icon.setAttribute('src', '../../images/edit-icon.png');
 
   $li.className = 'row';
   $imgDiv.className = 'col-half';
   $textDiv.className = 'col-half';
   $img.className = 'width-full';
+  $icon.className = 'text-right icon center-height';
+  $headerDiv.className = 'flex separate-content';
 
-  $textDiv.appendChild($h2);
+  $headerDiv.appendChild($h2);
+  $headerDiv.appendChild($icon);
+  $textDiv.appendChild($headerDiv);
   $textDiv.appendChild($p);
   $imgDiv.appendChild($img);
   $li.appendChild($imgDiv);
@@ -75,13 +85,15 @@ function createLi(obj) {
 function displayNewEntry(obj) {
   var liElement = createLi(obj);
   $entries.appendChild(liElement);
+  var noEntry = document.querySelector('.no-entry');
+  noEntry.remove();
 }
 
 function displayingPreviousEntry(event) {
   if (!data.entries.length) {
     var $noEntry = document.createElement('p');
     var $noEntryDiv = document.createElement('div');
-    $noEntryDiv.className = 'width-full full-page padding';
+    $noEntryDiv.className = 'width-full full-page padding no-entry';
     $noEntry.textContent = 'No entries have been recorded.';
     $noEntry.classList = 'width-full';
     $noEntryDiv.appendChild($noEntry);
