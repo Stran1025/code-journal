@@ -70,6 +70,11 @@ function createLi(obj) {
 }
 
 function displayingEntry(event) {
+  if (!data.entries.length) {
+    var $noEntry = document.createElement('p');
+    $noEntry.textContent = 'No entries have been recorded.';
+    $entries.appendChild($noEntry);
+  }
   for (var i = 0; i < data.nextEntryId - 1; i++) {
     var liElement = createLi(data.entries[i]);
     $entries.appendChild(liElement);
