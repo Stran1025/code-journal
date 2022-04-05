@@ -4,7 +4,7 @@
 var $photoDisplay = document.querySelector('#photo-display');
 var $urlInput = document.querySelector('#url');
 var $form = document.querySelector('#input-form');
-var $entries = document.querySelector('ul.container');
+var $entriesContainer = document.querySelector('ul.container');
 var $tabsContainer = document.querySelector('#tabs');
 var $tab = document.querySelectorAll('.tab');
 var $view = document.querySelectorAll('.view');
@@ -15,6 +15,14 @@ $form.addEventListener('submit', saveEntry);
 document.addEventListener('DOMContentLoaded', displayingPreviousEntry);
 $tabsContainer.addEventListener('click', switchTab);
 $newEntryButton.addEventListener('click', switchToForm);
+$entriesContainer.addEventListener('click', test);
+
+function test(event) {
+  if (!event.target.hasAttribute('data-edit-id')) {
+    return;
+  }
+  switchToForm();
+}
 
 function saveEntry(event) {
   event.preventDefault();
@@ -64,6 +72,7 @@ function createLi(obj) {
   $h2.textContent = obj.title;
   $img.setAttribute('src', obj.photoURL);
   $icon.setAttribute('src', '../../images/edit-icon.png');
+  $icon.setAttribute('data-edit-id', obj.entryId);
   $li.setAttribute('data-entry-id', obj.entryId);
 
   $li.className = 'row';
@@ -85,7 +94,7 @@ function createLi(obj) {
 
 function displayNewEntry(obj) {
   var liElement = createLi(obj);
-  $entries.appendChild(liElement);
+  $entriesContainer.appendChild(liElement);
   var noEntry = document.querySelector('.no-entry');
   noEntry.remove();
 }
@@ -98,11 +107,11 @@ function displayingPreviousEntry(event) {
     $noEntry.textContent = 'No entries have been recorded.';
     $noEntry.classList = 'width-full';
     $noEntryDiv.appendChild($noEntry);
-    $entries.appendChild($noEntryDiv);
+    $entriesContainer.appendChild($noEntryDiv);
   }
   for (var i = 0; i < data.nextEntryId - 1; i++) {
     var liElement = createLi(data.entries[i]);
-    $entries.appendChild(liElement);
+    $entriesContainer.appendChild(liElement);
   }
 }
 
