@@ -8,13 +8,13 @@ var $entries = document.querySelector('ul.container');
 var $tabsContainer = document.querySelector('#tabs');
 var $tab = document.querySelectorAll('.tab');
 var $view = document.querySelectorAll('.view');
-// var $newEntryButton = document.querySelector('#new-entry-button');
+var $newEntryButton = document.querySelector('#new-entry-button');
 
 $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 document.addEventListener('DOMContentLoaded', displayingPreviousEntry);
 $tabsContainer.addEventListener('click', switchTab);
-// $newEntryButton.addEventListener('click', switchToForm);
+$newEntryButton.addEventListener('click', switchToForm);
 
 function saveEntry(event) {
   event.preventDefault();
@@ -113,7 +113,19 @@ function switchTab(event) {
   }
 }
 
-// function switchToForm(event) {
-//   for (var tabIndex = 0; tabIndex < $tab; tabIndex++) {
-//   }
-// }
+function switchToForm(event) {
+  for (var tabIndex = 0; tabIndex < $tab.length; tabIndex++) {
+    if ($tab[tabIndex].getAttribute('data-view') === 'entry-form') {
+      $tab[tabIndex].classList.add('active');
+    } else {
+      $tab[tabIndex].classList.remove('active');
+    }
+  }
+  for (var viewIndex = 0; viewIndex < $view.length; viewIndex++) {
+    if ($view[viewIndex].getAttribute('data-view') === 'entry-form') {
+      $view[viewIndex].classList.remove('hidden');
+    } else {
+      $view[viewIndex].classList.add('hidden');
+    }
+  }
+}
