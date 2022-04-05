@@ -24,3 +24,42 @@ function saveEntry(event) {
 function updatePhoto(event) {
   $photoDisplay.setAttribute('src', event.target.value);
 }
+
+function displayEntry(obj) {
+
+  // <ul class="container" data-view="entries">
+  //   <li class="row">
+  //     <div class="col-half">
+  //       <img src=obj.url>
+  //     </div>
+  //     <div class="col-half">
+  //       <h2>obj.title</h2>
+  //       <p>obj.note</p>
+  //     </div>
+  //   </li>
+  // </ul>
+  var $li = document.createElement('li');
+  var $imgDiv = document.createElement('div');
+  var $textDiv = document.createElement('div');
+  var $img = document.createElement('img');
+  var $h2 = document.createElement('h2');
+  var $p = document.createElement('p');
+
+  $p.textContent = obj.notes;
+  $h2.textContent = obj.title;
+  $img.setAttribute('src', obj.photoURL);
+
+  $li.className = 'row';
+  $imgDiv.className = 'col-half';
+  $textDiv.className = 'col-half';
+  $img.className = 'width-full';
+
+  $textDiv.appendChild($h2);
+  $textDiv.appendChild($p);
+  $imgDiv.appendChild($img);
+  $li.appendChild($imgDiv);
+  $li.appendChild($textDiv);
+  return $li;
+}
+
+displayEntry(data.entries[0]);
