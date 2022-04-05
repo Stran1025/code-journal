@@ -27,7 +27,7 @@ function editEntry(event) {
   $newEntryHeading.classList.add('hidden');
   $editEntryHeading.classList.remove('hidden');
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
-    if (Number.parseInt(event.target.getAttribute('data-edit-id')) === data.entries[entryIndex].entryId) {
+    if (Number.parseInt(event.target.getAttribute('data-edit-id')) === Number.parseInt(data.entries[entryIndex].entryId)) {
       data.editing = data.entries[entryIndex];
       break;
     }
@@ -44,10 +44,12 @@ function saveEntry(event) {
     obj.photoURL = $form.elements.url.value;
     obj.notes = $form.elements.note.value;
     obj.entryId = editedEntryId;
-    editedEntryId = 0;
     displayNewEntry(obj);
     $editEntryHeading.classList.add('hidden');
     $newEntryHeading.classList.remove('hidden');
+    data.entries[editedEntryId - 1] = obj;
+    data.editing = null;
+    editedEntryId = 0;
     return;
   }
   obj.entryId = data.nextEntryId;
