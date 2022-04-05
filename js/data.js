@@ -6,7 +6,6 @@ var data = {
   editing: null,
   nextEntryId: 1
 };
-
 var previousData = localStorage.getItem('entry-data');
 if (previousData !== null) {
   data = JSON.parse(previousData);

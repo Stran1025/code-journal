@@ -18,15 +18,14 @@
   <header>
     <div class="container">
       <div class="row">
-        <div id="tabs" class="col-full spacing">
-          <a class="tab padding active" data-view="entry-form">Code Journal</a>
-          <a class="tab padding" data-view="entries">Entries</a>
+        <div class="col-full">
+          <p>Code Journal</p>
         </div>
       </div>
     </div>
   </header>
   <main>
-    <div class="container view" data-view="entry-form">
+    <div class="container">
       <form id="input-form" class="">
         <div class="row">
           <div class="col-full">
@@ -37,7 +36,7 @@
           <div class="col-half spacing">
             <img id="photo-display" class="width-full" src="/images/placeholder-image-square.jpg">
           </div>
-          <div class="col-half spacing">
+          <div class="col-half spacing" data-view="entry-form-title-url">
             <label class="font-20">
               Title
               <input
@@ -58,7 +57,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-full">
+          <div class="col-full" data-view="entry-form-notes">
             <label class="font-20">
               Notes
               <textarea
@@ -71,21 +70,11 @@
         </div>
         <div class="row">
           <div class="col-full text-right">
-            <button id="submit" class="button font-20 spacing" type="submit">SAVE</button>
+            <button id="submit" class="button font-20" type="submit">SAVE</button>
           </div>
         </div>
       </form>
     </div>
-    <ul class="container view hidden" data-view="entries">
-      <li class="row">
-        <div class="sml-col-half">
-          <h2>Entries</h2>
-        </div>
-        <div class="sml-col-half text-right spacing">
-          <button id="new-entry-button" class="button">New</button>
-        </div>
-      </li>
-    </ul>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
