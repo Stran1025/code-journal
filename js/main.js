@@ -64,6 +64,7 @@ function createLi(obj) {
   $h2.textContent = obj.title;
   $img.setAttribute('src', obj.photoURL);
   $icon.setAttribute('src', '../../images/edit-icon.png');
+  $li.setAttribute('data-entry-id', obj.entryId);
 
   $li.className = 'row';
   $imgDiv.className = 'col-half';
