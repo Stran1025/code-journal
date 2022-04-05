@@ -10,6 +10,8 @@ var $tab = document.querySelectorAll('.tab');
 var $view = document.querySelectorAll('.view');
 var $newEntryButton = document.querySelector('#new-entry-button');
 var editedEntryId = 0;
+var $newEntryHeading = document.querySelector('#new-entry-heading');
+var $editEntryHeading = document.querySelector('#edit-entry-heading');
 
 $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
@@ -22,6 +24,8 @@ function editEntry(event) {
   if (!event.target.hasAttribute('data-edit-id')) {
     return;
   }
+  $newEntryHeading.classList.add('hidden');
+  $editEntryHeading.classList.remove('hidden');
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
     if (Number.parseInt(event.target.getAttribute('data-edit-id')) === data.entries[entryIndex].entryId) {
       data.editing = data.entries[entryIndex];
@@ -42,6 +46,8 @@ function saveEntry(event) {
     obj.entryId = editedEntryId;
     editedEntryId = 0;
     displayNewEntry(obj);
+    $editEntryHeading.classList.add('hidden');
+    $newEntryHeading.classList.remove('hidden');
     return;
   }
   obj.entryId = data.nextEntryId;
