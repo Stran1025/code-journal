@@ -1,3 +1,11 @@
+.hidden {
+  display: none;
+}
+
+.active {
+  color: yellow;
+}
+
 .width-full {
   width: 100%;
 }
@@ -44,6 +52,10 @@ textarea.input-border {
   font-size: 20px;
 }
 
+.font-14 {
+  font-size: 14px;
+}
+
 main {
   background-color: rgb(240 240 240);
 }
@@ -54,4 +66,20 @@ main {
   border: 1px solid rgb(86 43 129);
   border-radius: 4px;
   padding: 5px 15px;
+}
+
+li {
+  list-style: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.full-page {
+  height: 100vh;
+}
+
+.divider {
+  border-right: solid 2px black;
 }
