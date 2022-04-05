@@ -14,7 +14,7 @@ $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 document.addEventListener('DOMContentLoaded', displayingPreviousEntry);
 $tabsContainer.addEventListener('click', switchTab);
-$newEntryButton.addEventListener('click', switchToForm);
+$newEntryButton.addEventListener('click', newForm);
 $entriesContainer.addEventListener('click', editEntry);
 
 function editEntry(event) {
@@ -22,11 +22,12 @@ function editEntry(event) {
     return;
   }
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
-    if (event.target.getAttribute('data-edit-id') === '' + data.entries[entryIndex].entryId) {
+    if (Number.parseInt(event.target.getAttribute('data-edit-id')) === data.entries[entryIndex].entryId) {
       data.editing = data.entries[entryIndex];
       break;
     }
   }
+  switchToForm(data.editing);
 }
 
 function saveEntry(event) {
@@ -140,7 +141,11 @@ function switchTab(event) {
   }
 }
 
-function switchToForm(event) {
+function newForm(event) {
+  switchToForm();
+}
+
+function switchToForm(obj) {
   for (var tabIndex = 0; tabIndex < $tab.length; tabIndex++) {
     if ($tab[tabIndex].getAttribute('data-view') === 'entry-form') {
       $tab[tabIndex].classList.add('active');
@@ -155,4 +160,10 @@ function switchToForm(event) {
       $view[viewIndex].classList.add('hidden');
     }
   }
+  if (obj === undefined) {
+    return;
+  }
+  $form.elements.title.value = obj.title;
+  $form.elements.url.value = obj.photoURL;
+  $form.elements.note.value = obj.notes;
 }
