@@ -58,7 +58,7 @@ function createLi(obj) {
   //     <div class="col-half">
   //       <div>
   //         <h2>obj.title</h2>
-  //         <img src= edit-icon.png>
+  //         <i class fa-solid fa-pen></i>
   //       </div>
   //       <p>obj.note</p>
   //     </div>
@@ -71,13 +71,12 @@ function createLi(obj) {
   var $headerDiv = document.createElement('div');
   var $img = document.createElement('img');
   var $h2 = document.createElement('h2');
-  var $icon = document.createElement('img');
+  var $icon = document.createElement('i');
   var $p = document.createElement('p');
 
   $p.textContent = obj.notes;
   $h2.textContent = obj.title;
   $img.setAttribute('src', obj.photoURL);
-  $icon.setAttribute('src', '../../images/edit-icon.png');
   $icon.setAttribute('data-edit-id', obj.entryId);
   $li.setAttribute('data-entry-id', obj.entryId);
 
@@ -85,7 +84,7 @@ function createLi(obj) {
   $imgDiv.className = 'col-half';
   $textDiv.className = 'col-half';
   $img.className = 'width-full';
-  $icon.className = 'text-right icon center-height';
+  $icon.className = 'fas fa-pen text-right center-height';
   $headerDiv.className = 'flex separate-content';
 
   $headerDiv.appendChild($h2);
