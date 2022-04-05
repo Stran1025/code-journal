@@ -5,10 +5,14 @@ var $photoDisplay = document.querySelector('#photo-display');
 var $urlInput = document.querySelector('#url');
 var $form = document.querySelector('#input-form');
 var $entries = document.querySelector('ul.container');
+var $tabsContainer = document.querySelector('#tabs');
+var $tab = document.querySelectorAll('.tab');
+var $view = document.querySelectorAll('.view');
 
 $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 document.addEventListener('DOMContentLoaded', displayingEntry);
+$tabsContainer.addEventListener('click', switchTab);
 
 function saveEntry(event) {
   event.preventDefault();
@@ -69,5 +73,25 @@ function displayingEntry(event) {
   for (var i = 0; i < data.nextEntryId - 1; i++) {
     var liElement = createLi(data.entries[i]);
     $entries.appendChild(liElement);
+  }
+}
+
+function switchTab(event) {
+  if (!event.target.matches('.tab')) {
+    return;
+  }
+  for (var i = 0; i < $tab.length; i++) {
+    if ($tab[i] === event.target) {
+      event.target.classList.add('active');
+    } else {
+      $tab[i].classList.remove('active');
+    }
+  }
+  for (var j = 0; j < $view.length; j++) {
+    if ($view[j].getAttribute('data-view') === event.target.getAttribute('data-view')) {
+      $view[j].classList.remove('hidden');
+    } else {
+      $view[j].classList.add('hidden');
+    }
   }
 }

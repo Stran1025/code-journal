@@ -2,6 +2,10 @@
   display: none;
 }
 
+.active {
+  color: yellow;
+}
+
 .width-full {
   width: 100%;
 }
@@ -66,4 +70,8 @@ main {
 
 li {
   list-style: none;
+}
+
+a:hover {
+  cursor: pointer;
 }
