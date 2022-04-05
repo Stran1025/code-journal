@@ -53,6 +53,7 @@ function saveEntry(event) {
   $form.reset();
   displayNewEntry(obj);
   $photoDisplay.setAttribute('src', 'images/placeholder-image-square.jpg');
+  switchToEntries();
 }
 
 function updatePhoto(event) {
@@ -115,6 +116,7 @@ function displayNewEntry(obj) {
     oldLiElement.replaceWith(editedLiElement);
     $form.reset();
     $photoDisplay.setAttribute('src', 'images/placeholder-image-square.jpg');
+    switchToEntries();
     return;
   }
   var liElement = createLi(obj);
@@ -184,4 +186,21 @@ function switchToForm(obj) {
   $form.elements.title.value = obj.title;
   $form.elements.url.value = obj.photoURL;
   $form.elements.note.value = obj.notes;
+}
+
+function switchToEntries() {
+  for (var tabIndex = 0; tabIndex < $tab.length; tabIndex++) {
+    if ($tab[tabIndex].getAttribute('data-view') === 'entries') {
+      $tab[tabIndex].classList.add('active');
+    } else {
+      $tab[tabIndex].classList.remove('active');
+    }
+  }
+  for (var viewIndex = 0; viewIndex < $view.length; viewIndex++) {
+    if ($view[viewIndex].getAttribute('data-view') === 'entries') {
+      $view[viewIndex].classList.remove('hidden');
+    } else {
+      $view[viewIndex].classList.add('hidden');
+    }
+  }
 }
