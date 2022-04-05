@@ -4,9 +4,11 @@
 var $photoDisplay = document.querySelector('#photo-display');
 var $urlInput = document.querySelector('#url');
 var $form = document.querySelector('#input-form');
+var $entries = document.querySelector('ul.container');
 
 $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
+document.addEventListener('DOMContentLoaded', displayingEntry);
 
 function saveEntry(event) {
   event.preventDefault();
@@ -25,7 +27,7 @@ function updatePhoto(event) {
   $photoDisplay.setAttribute('src', event.target.value);
 }
 
-function displayEntry(obj) {
+function createLi(obj) {
 
   // <ul class="container" data-view="entries">
   //   <li class="row">
@@ -38,6 +40,7 @@ function displayEntry(obj) {
   //     </div>
   //   </li>
   // </ul>
+
   var $li = document.createElement('li');
   var $imgDiv = document.createElement('div');
   var $textDiv = document.createElement('div');
@@ -62,4 +65,9 @@ function displayEntry(obj) {
   return $li;
 }
 
-displayEntry(data.entries[0]);
+function displayingEntry(event) {
+  for (var i = 0; i < data.nextEntryId - 1; i++) {
+    var liElement = createLi(data.entries[i]);
+    $entries.appendChild(liElement);
+  }
+}
