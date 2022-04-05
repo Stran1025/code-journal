@@ -15,13 +15,18 @@ $form.addEventListener('submit', saveEntry);
 document.addEventListener('DOMContentLoaded', displayingPreviousEntry);
 $tabsContainer.addEventListener('click', switchTab);
 $newEntryButton.addEventListener('click', switchToForm);
-$entriesContainer.addEventListener('click', test);
+$entriesContainer.addEventListener('click', editEntry);
 
-function test(event) {
+function editEntry(event) {
   if (!event.target.hasAttribute('data-edit-id')) {
     return;
   }
-  switchToForm();
+  for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
+    if (event.target.getAttribute('data-edit-id') === '' + data.entries[entryIndex].entryId) {
+      data.editing = data.entries[entryIndex];
+      break;
+    }
+  }
 }
 
 function saveEntry(event) {
