@@ -127,6 +127,7 @@ function createLi(obj) {
   $icon.className = 'fas fa-pen text-right center-height';
   $headerDiv.className = 'flex separate-content';
   $li.classList.add('entry-' + obj.entryId);
+  $li.classList.add('entry');
 
   $headerDiv.appendChild($h2);
   $headerDiv.appendChild($icon);
@@ -154,7 +155,9 @@ function displayNewEntry(obj) {
     return;
   }
   var liElement = createLi(obj);
-  $entriesContainer.appendChild(liElement);
+  var topEntry = document.querySelector('li.entry');
+  $entriesContainer.insertBefore(liElement, topEntry);
+  switchToEntries();
   var noEntry = document.querySelector('.no-entry');
   noEntry.remove();
 }
