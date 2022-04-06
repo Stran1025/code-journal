@@ -15,6 +15,8 @@ var $deleteEntry = document.querySelector('.delete-entry');
 var $deleteModal = document.querySelector('#delete-modal');
 var $modalCancel = document.querySelector('.modal-cancel-button');
 var $modalConfirm = document.querySelector('.modal-confirm-button');
+var $searchInput = document.querySelector('#search-input');
+var $searchButton = document.querySelector('#search-button');
 
 $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
@@ -25,6 +27,11 @@ $entriesContainer.addEventListener('click', editEntry);
 $deleteEntry.addEventListener('click', toggleDeleteModal);
 $modalCancel.addEventListener('click', toggleDeleteModal);
 $modalConfirm.addEventListener('click', deleteEntry);
+$searchButton.addEventListener('click', searchEntry);
+
+function searchEntry() {
+  $searchInput.value = 0;
+}
 
 function deleteEntry(event) {
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
