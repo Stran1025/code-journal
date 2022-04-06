@@ -13,6 +13,8 @@ var $newEntryHeading = document.querySelector('#new-entry-heading');
 var $editEntryHeading = document.querySelector('#edit-entry-heading');
 var $deleteEntry = document.querySelector('.delete-entry');
 var $deleteModal = document.querySelector('#delete-modal');
+var $modalCancel = document.querySelector('.modal-cancel-button');
+// var $modalConfirm = document.querySelector('.modal-confirm-button');
 
 $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
@@ -20,10 +22,11 @@ document.addEventListener('DOMContentLoaded', displayingPreviousEntry);
 $tabsContainer.addEventListener('click', switchTab);
 $newEntryButton.addEventListener('click', newForm);
 $entriesContainer.addEventListener('click', editEntry);
-$deleteEntry.addEventListener('click', popUpDeleteModal);
+$deleteEntry.addEventListener('click', toggleDeleteModal);
+$modalCancel.addEventListener('click', toggleDeleteModal);
 
-function popUpDeleteModal(event) {
-  $deleteModal.classList.remove('hidden');
+function toggleDeleteModal(event) {
+  $deleteModal.classList.toggle('hidden');
 }
 
 function editEntry(event) {
