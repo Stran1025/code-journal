@@ -47,7 +47,6 @@ function saveEntry(event) {
     displayNewEntry(obj);
     $editEntryHeading.classList.add('hidden');
     $newEntryHeading.classList.remove('hidden');
-    data.entries[editedEntryId - 1] = obj;
     data.editing = null;
     editedEntryId = 0;
     return;
@@ -119,6 +118,11 @@ function createLi(obj) {
 
 function displayNewEntry(obj) {
   if (data.editing !== null) {
+    for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
+      if (Number.parseInt(data.entries[entryIndex].entryId) === Number.parseInt(obj.entryId)) {
+        data.entries.splice(entryIndex, 1, obj);
+      }
+    }
     var oldLiElement = document.querySelector('.entry-' + obj.entryId);
     var editedLiElement = createLi(obj);
     oldLiElement.replaceWith(editedLiElement);
