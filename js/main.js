@@ -21,7 +21,7 @@ $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 document.addEventListener('DOMContentLoaded', displayingPreviousEntry);
 $tabsContainer.addEventListener('click', switchTab);
-$newEntryButton.addEventListener('click', newForm);
+$newEntryButton.addEventListener('click', switchTab);
 $entriesContainer.addEventListener('click', editEntry);
 $deleteEntry.addEventListener('click', toggleDeleteModal);
 $modalCancel.addEventListener('click', toggleDeleteModal);
@@ -202,22 +202,20 @@ function switchTab(event) {
   }
   for (var tabIndex = 0; tabIndex < $tab.length; tabIndex++) {
     if ($tab[tabIndex] === event.target) {
-      event.target.classList.add('active');
-    } else {
-      $tab[tabIndex].classList.remove('active');
+      data.view = $tab[tabIndex].getAttribute('data-view');
+      loadTab(data.view);
     }
   }
-  for (var viewIndex = 0; viewIndex < $view.length; viewIndex++) {
-    if ($view[viewIndex].getAttribute('data-view') === event.target.getAttribute('data-view')) {
-      $view[viewIndex].classList.remove('hidden');
-    } else {
-      $view[viewIndex].classList.add('hidden');
-    }
-  }
+
 }
 
-function newForm(event) {
-  switchToForm();
+function loadTab(str) {
+  for (var tabIndex = 0; tabIndex < $tab.length; tabIndex++) {
+    if ($tab[tabIndex].getAttribute('data-view') === str) {
+      $tab[tabIndex].classList.add('active');
+      return;
+    }
+  }
 }
 
 function switchToForm(obj) {
