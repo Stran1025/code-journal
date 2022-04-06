@@ -56,7 +56,7 @@ textarea.input-border {
   font-size: 14px;
 }
 
-main {
+body {
   background-color: rgb(240 240 240);
 }
 
@@ -76,10 +76,6 @@ a:hover {
   cursor: pointer;
 }
 
-.full-page {
-  height: 100vh;
-}
-
 .flex {
   display: flex;
 }
@@ -90,4 +86,9 @@ a:hover {
 
 .center-height {
   align-self: center;
+}
+
+.delete-entry {
+  color: red;
+  text-decoration: underline;
 }
