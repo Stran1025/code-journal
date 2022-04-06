@@ -80,6 +80,14 @@ a:hover {
   height: 100vh;
 }
 
-.divider {
-  border-right: solid 2px black;
+.flex {
+  display: flex;
+}
+
+.separate-content {
+  justify-content: space-between;
+}
+
+.center-height {
+  align-self: center;
 }
