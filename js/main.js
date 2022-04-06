@@ -29,8 +29,18 @@ $modalCancel.addEventListener('click', toggleDeleteModal);
 $modalConfirm.addEventListener('click', deleteEntry);
 $searchButton.addEventListener('click', searchEntry);
 
-function searchEntry() {
-  $searchInput.value = 0;
+function searchEntry(event) {
+  if ($searchInput.value === undefined || $searchInput.value === '') {
+    return;
+  }
+  var $entries = document.querySelectorAll('li.entry');
+  for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
+    if (data.entries[entryIndex].title.includes($searchInput.value)) {
+      continue;
+    } else {
+      $entries[entryIndex].classList.add('hidden');
+    }
+  }
 }
 
 function deleteEntry(event) {
