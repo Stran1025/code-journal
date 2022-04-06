@@ -10,6 +10,10 @@
   width: 100%;
 }
 
+.width-half {
+  width: 100%;
+}
+
 .block {
   display: block;
 }
@@ -74,6 +78,7 @@ body {
 
 li {
   list-style: none;
+  margin-bottom: 20px;
 }
 
 a:hover {
@@ -142,5 +147,9 @@ a:hover {
 @media screen and (min-width: 768px) {
   .modal {
     left: 40%;
+  }
+
+  .width-half {
+    width: 50%;
   }
 }

@@ -15,16 +15,34 @@ var $deleteEntry = document.querySelector('.delete-entry');
 var $deleteModal = document.querySelector('#delete-modal');
 var $modalCancel = document.querySelector('.modal-cancel-button');
 var $modalConfirm = document.querySelector('.modal-confirm-button');
+var $searchInput = document.querySelector('#search-input');
 
 $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
 document.addEventListener('DOMContentLoaded', displayingPreviousEntry);
 $tabsContainer.addEventListener('click', switchTab);
-$newEntryButton.addEventListener('click', newForm);
+$newEntryButton.addEventListener('click', switchTab);
 $entriesContainer.addEventListener('click', editEntry);
 $deleteEntry.addEventListener('click', toggleDeleteModal);
 $modalCancel.addEventListener('click', toggleDeleteModal);
 $modalConfirm.addEventListener('click', deleteEntry);
+$searchInput.addEventListener('search', searchEntry);
+
+function searchEntry(event) {
+  var $entries = document.querySelectorAll('li.entry');
+  if ($searchInput.value === undefined || $searchInput.value === '') {
+    for (var liIndex = 0; liIndex < $entries.length; liIndex++) {
+      $entries[liIndex].classList.remove('hidden');
+    }
+  }
+  for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
+    if (data.entries[entryIndex].title.includes($searchInput.value) || data.entries[entryIndex].notes.includes($searchInput.value)) {
+      continue;
+    } else {
+      $entries[entryIndex].classList.add('hidden');
+    }
+  }
+}
 
 function deleteEntry(event) {
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
@@ -127,6 +145,7 @@ function createLi(obj) {
   $icon.className = 'fas fa-pen text-right center-height';
   $headerDiv.className = 'flex separate-content';
   $li.classList.add('entry-' + obj.entryId);
+  $li.classList.add('entry');
 
   $headerDiv.appendChild($h2);
   $headerDiv.appendChild($icon);
@@ -154,7 +173,9 @@ function displayNewEntry(obj) {
     return;
   }
   var liElement = createLi(obj);
-  $entriesContainer.appendChild(liElement);
+  var topEntry = document.querySelector('li.entry');
+  $entriesContainer.insertBefore(liElement, topEntry);
+  switchToEntries();
   var noEntry = document.querySelector('.no-entry');
   noEntry.remove();
 }
@@ -181,22 +202,20 @@ function switchTab(event) {
   }
   for (var tabIndex = 0; tabIndex < $tab.length; tabIndex++) {
     if ($tab[tabIndex] === event.target) {
-      event.target.classList.add('active');
-    } else {
-      $tab[tabIndex].classList.remove('active');
+      data.view = $tab[tabIndex].getAttribute('data-view');
+      loadTab(data.view);
     }
   }
-  for (var viewIndex = 0; viewIndex < $view.length; viewIndex++) {
-    if ($view[viewIndex].getAttribute('data-view') === event.target.getAttribute('data-view')) {
-      $view[viewIndex].classList.remove('hidden');
-    } else {
-      $view[viewIndex].classList.add('hidden');
-    }
-  }
+
 }
 
-function newForm(event) {
-  switchToForm();
+function loadTab(str) {
+  for (var tabIndex = 0; tabIndex < $tab.length; tabIndex++) {
+    if ($tab[tabIndex].getAttribute('data-view') === str) {
+      $tab[tabIndex].classList.add('active');
+      return;
+    }
+  }
 }
 
 function switchToForm(obj) {
