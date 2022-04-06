@@ -9,7 +9,6 @@ var $tabsContainer = document.querySelector('#tabs');
 var $tab = document.querySelectorAll('.tab');
 var $view = document.querySelectorAll('.view');
 var $newEntryButton = document.querySelector('#new-entry-button');
-var editedEntryId = 0;
 var $newEntryHeading = document.querySelector('#new-entry-heading');
 var $editEntryHeading = document.querySelector('#edit-entry-heading');
 
@@ -32,7 +31,6 @@ function editEntry(event) {
       break;
     }
   }
-  editedEntryId = event.target.getAttribute('data-edit-id');
   switchToForm(data.editing);
 }
 
@@ -43,12 +41,11 @@ function saveEntry(event) {
     obj.title = $form.elements.title.value;
     obj.photoURL = $form.elements.url.value;
     obj.notes = $form.elements.note.value;
-    obj.entryId = editedEntryId;
+    obj.entryId = data.editing.entryId;
     displayNewEntry(obj);
     $editEntryHeading.classList.add('hidden');
     $newEntryHeading.classList.remove('hidden');
     data.editing = null;
-    editedEntryId = 0;
     return;
   }
   obj.entryId = data.nextEntryId;
