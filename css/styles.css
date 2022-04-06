@@ -11,7 +11,7 @@
 }
 
 .width-half {
-  width: 50%;
+  width: 100%;
 }
 
 .block {
@@ -147,5 +147,9 @@ a:hover {
 @media screen and (min-width: 768px) {
   .modal {
     left: 40%;
+  }
+
+  .width-half {
+    width: 50%;
   }
 }
