@@ -10,6 +10,10 @@
   width: 100%;
 }
 
+.width-half {
+  width: 50%;
+}
+
 .block {
   display: block;
 }
@@ -74,6 +78,7 @@ body {
 
 li {
   list-style: none;
+  margin-bottom: 20px;
 }
 
 a:hover {
