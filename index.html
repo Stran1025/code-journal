@@ -15,9 +15,9 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div class="p-relative">
-    <div id="delete-modal-overlay" class="overlay">
-      <div id="delete-modal" class="modal center-content">
+  <div id="delete-modal" class="p-relative hidden">
+    <div class="overlay">
+      <div class="modal center-content">
         <p class="">Are you sure you want to delete this entry?</p>
         <div class="flex separate-content">
           <button class="modal-cancel-button">CANCEL</button>
@@ -82,8 +82,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-full flex separate-content">
-            <a class="delete-entry spacing font-20">Delete Entry</a>
+          <div class="sml-col-half text-left">
+            <a class="delete-entry spacing font-20 hidden">Delete Entry</a>
+          </div>
+          <div class="sml-col-half text-right">
             <button id="submit" class="button font-20 spacing" type="submit">SAVE</button>
           </div>
         </div>

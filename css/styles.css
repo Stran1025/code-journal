@@ -18,6 +18,10 @@
   text-align: right;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .wrap {
   flex-wrap: wrap;
 }

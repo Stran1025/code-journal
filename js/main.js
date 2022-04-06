@@ -11,6 +11,8 @@ var $view = document.querySelectorAll('.view');
 var $newEntryButton = document.querySelector('#new-entry-button');
 var $newEntryHeading = document.querySelector('#new-entry-heading');
 var $editEntryHeading = document.querySelector('#edit-entry-heading');
+var $deleteEntry = document.querySelector('.delete-entry');
+var $deleteModal = document.querySelector('#delete-modal');
 
 $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
@@ -18,11 +20,17 @@ document.addEventListener('DOMContentLoaded', displayingPreviousEntry);
 $tabsContainer.addEventListener('click', switchTab);
 $newEntryButton.addEventListener('click', newForm);
 $entriesContainer.addEventListener('click', editEntry);
+$deleteEntry.addEventListener('click', popUpDeleteModal);
+
+function popUpDeleteModal(event) {
+  $deleteModal.classList.remove('hidden');
+}
 
 function editEntry(event) {
   if (!event.target.hasAttribute('data-edit-id')) {
     return;
   }
+  $deleteEntry.classList.remove('hidden');
   $newEntryHeading.classList.add('hidden');
   $editEntryHeading.classList.remove('hidden');
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
