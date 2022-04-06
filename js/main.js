@@ -11,6 +11,10 @@ var $view = document.querySelectorAll('.view');
 var $newEntryButton = document.querySelector('#new-entry-button');
 var $newEntryHeading = document.querySelector('#new-entry-heading');
 var $editEntryHeading = document.querySelector('#edit-entry-heading');
+var $deleteEntry = document.querySelector('.delete-entry');
+var $deleteModal = document.querySelector('#delete-modal');
+var $modalCancel = document.querySelector('.modal-cancel-button');
+var $modalConfirm = document.querySelector('.modal-confirm-button');
 
 $urlInput.addEventListener('input', updatePhoto);
 $form.addEventListener('submit', saveEntry);
@@ -18,11 +22,32 @@ document.addEventListener('DOMContentLoaded', displayingPreviousEntry);
 $tabsContainer.addEventListener('click', switchTab);
 $newEntryButton.addEventListener('click', newForm);
 $entriesContainer.addEventListener('click', editEntry);
+$deleteEntry.addEventListener('click', toggleDeleteModal);
+$modalCancel.addEventListener('click', toggleDeleteModal);
+$modalConfirm.addEventListener('click', deleteEntry);
+
+function deleteEntry(event) {
+  for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
+    if (Number.parseInt(data.entries[entryIndex].entryId) === Number.parseInt(data.editing.entryId)) {
+      var toBeDeleted = document.querySelector('.entry-' + data.entries[entryIndex].entryId);
+      data.entries.splice(entryIndex, 1);
+      toBeDeleted.remove();
+    }
+  }
+  data.editing = null;
+  $deleteModal.classList.toggle('hidden');
+  switchToEntries();
+}
+
+function toggleDeleteModal(event) {
+  $deleteModal.classList.toggle('hidden');
+}
 
 function editEntry(event) {
   if (!event.target.hasAttribute('data-edit-id')) {
     return;
   }
+  $deleteEntry.classList.remove('hidden');
   $newEntryHeading.classList.add('hidden');
   $editEntryHeading.classList.remove('hidden');
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {

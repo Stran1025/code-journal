@@ -18,6 +18,10 @@
   text-align: right;
 }
 
+.text-left {
+  text-align: left;
+}
+
 .wrap {
   flex-wrap: wrap;
 }
@@ -56,7 +60,7 @@ textarea.input-border {
   font-size: 14px;
 }
 
-main {
+body {
   background-color: rgb(240 240 240);
 }
 
@@ -76,10 +80,6 @@ a:hover {
   cursor: pointer;
 }
 
-.full-page {
-  height: 100vh;
-}
-
 .flex {
   display: flex;
 }
@@ -90,4 +90,57 @@ a:hover {
 
 .center-height {
   align-self: center;
+}
+
+.delete-entry {
+  color: red;
+  text-decoration: underline;
+}
+
+.center-content {
+  text-align: center;
+}
+
+.p-relative {
+  position: relative;
+}
+
+.modal {
+  position: absolute;
+  top: 400px;
+  left: 20%;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.overlay {
+  background-color: rgb(0 0 0 / 60%);
+  width: 100%;
+  height: 150vh;
+  position: absolute;
+  top: 0;
+}
+
+.modal-cancel-button {
+  background-color: rgb(182, 182, 182);
+  color: black;
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 4px;
+  padding: 5px 15px;
+}
+
+.modal-confirm-button {
+  background-color: rgb(220, 38, 38);
+  color: white;
+  border: 1px solid rgb(220, 38, 38);
+  border-radius: 4px;
+  padding: 5px 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    left: 40%;
+  }
 }
