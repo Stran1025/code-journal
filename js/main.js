@@ -73,6 +73,7 @@ function editEntry(event) {
       break;
     }
   }
+  $form.elements.tags.value = data.editing.tags;
   $form.elements.title.value = data.editing.title;
   $photoDisplay.setAttribute('src', data.editing.photoURL);
   $form.elements.url.value = data.editing.photoURL;
@@ -125,6 +126,7 @@ function createLi(obj) {
   //         <h2>obj.title</h2>
   //         <i class fa-solid fa-pen></i>
   //       </div>
+  //       <p>Tags:<span>tag1</span><span>tag2</span>
   //       <p>obj.note</p>
   //     </div>
   //   </li>
@@ -137,7 +139,13 @@ function createLi(obj) {
   var $img = document.createElement('img');
   var $h2 = document.createElement('h2');
   var $icon = document.createElement('i');
+  var $tagContainer = document.createElement('p');
   var $p = document.createElement('p');
+  if (obj.tags !== undefined) {
+    var tags = obj.tags.split(',');
+  } else {
+    tags = 0;
+  }
 
   $p.textContent = obj.notes;
   $h2.textContent = obj.title;
@@ -145,17 +153,28 @@ function createLi(obj) {
   $icon.setAttribute('data-edit-id', obj.entryId);
 
   $li.className = 'row';
-  $imgDiv.className = 'col-half';
-  $textDiv.className = 'col-half';
-  $img.className = 'width-full';
-  $icon.className = 'fas fa-pen text-right center-height';
-  $headerDiv.className = 'flex separate-content';
-  $li.classList.add('entry-' + obj.entryId);
   $li.classList.add('entry');
+  $li.classList.add('entry-' + obj.entryId);
+  $imgDiv.className = 'col-half';
+  $img.className = 'width-full';
+  $textDiv.className = 'col-half';
+  $headerDiv.className = 'flex separate-content';
+  $icon.className = 'fas fa-pen text-right center-height';
+  $tagContainer.className = 'tag-container';
+  $tagContainer.textContent = 'Tags:';
 
+  if (tags) {
+    for (var tagIndex = 0; tagIndex < tags.length; tagIndex++) {
+      var $tag = document.createElement('span');
+      $tag.textContent = tags[tagIndex];
+      $tag.className = 'tag';
+      $tagContainer.appendChild($tag);
+    }
+  }
   $headerDiv.appendChild($h2);
   $headerDiv.appendChild($icon);
   $textDiv.appendChild($headerDiv);
+  $textDiv.appendChild($tagContainer);
   $textDiv.appendChild($p);
   $imgDiv.appendChild($img);
   $li.appendChild($imgDiv);
