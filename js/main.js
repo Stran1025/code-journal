@@ -87,6 +87,7 @@ function saveEntry(event) {
   obj.photoURL = $form.elements.url.value;
   obj.notes = $form.elements.note.value;
   obj.title = $form.elements.title.value;
+  obj.tags = $form.elements.tags.value;
   if (data.editing !== null) {
     obj.entryId = data.editing.entryId;
     toggleEditHeading();
