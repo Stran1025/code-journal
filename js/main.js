@@ -98,7 +98,7 @@ function saveEntry(event) {
     obj.entryId = data.editing.entryId;
     obj.date = data.editing.date;
   } else {
-    obj.date = Date();
+    obj.date = new Date();
     obj.entryId = data.nextEntryId;
     data.nextEntryId++;
     data.entries.unshift(obj);
