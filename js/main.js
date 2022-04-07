@@ -118,6 +118,7 @@ function createLi(obj) {
   // <ul class="container" data-view="entries">
   //   <li class="row">
   //     <div class="col-half">
+  //       <p>Month Day Year</p>
   //       <img src=obj.url>
   //     </div>
   //     <div class="col-half">
@@ -141,6 +142,7 @@ function createLi(obj) {
   var $tagContainer = document.createElement('div');
   var $note = document.createElement('p');
   var $tagheading = document.createElement('p');
+  var $date = document.createElement('p');
   if (obj.tags !== undefined) {
     var tags = obj.tags.split(',');
   } else {
@@ -152,6 +154,7 @@ function createLi(obj) {
   $img.setAttribute('src', obj.photoURL);
   $icon.setAttribute('data-edit-id', obj.entryId);
   $tagheading.textContent = 'Tags:';
+  $date.textContent = 'Date Created: ' + obj.date.slice(4, 15);
 
   $li.className = 'row';
   $li.classList.add('entry');
@@ -178,6 +181,7 @@ function createLi(obj) {
   $textDiv.appendChild($headerDiv);
   $textDiv.appendChild($tagContainer);
   $textDiv.appendChild($note);
+  $imgDiv.appendChild($date);
   $imgDiv.appendChild($img);
   $li.appendChild($imgDiv);
   $li.appendChild($textDiv);
