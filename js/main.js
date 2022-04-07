@@ -36,7 +36,7 @@ function searchEntry(event) {
     }
   }
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
-    if (data.entries[entryIndex].title.includes($searchInput.value) || data.entries[entryIndex].notes.includes($searchInput.value)) {
+    if (data.entries[entryIndex].title.includes($searchInput.value) || data.entries[entryIndex].notes.includes($searchInput.value) || data.entries[entryIndex].tags.includes($searchInput.value)) {
       continue;
     } else {
       $entries[entryIndex].classList.add('hidden');
