@@ -36,7 +36,7 @@ function searchEntry(event) {
     }
   }
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
-    if (data.entries[entryIndex].title.includes($searchInput.value) || data.entries[entryIndex].notes.includes($searchInput.value)) {
+    if (data.entries[entryIndex].title.includes($searchInput.value) || data.entries[entryIndex].notes.includes($searchInput.value) || data.entries[entryIndex].tags.includes($searchInput.value)) {
       continue;
     } else {
       $entries[entryIndex].classList.add('hidden');
@@ -66,13 +66,16 @@ function editEntry(event) {
   if (!event.target.hasAttribute('data-edit-id')) {
     return;
   }
-  toggleEditHeading();
+  $editEntryHeading.classList.remove('hidden');
+  $newEntryHeading.classList.add('hidden');
+  $deleteEntry.classList.remove('hidden');
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
     if (Number.parseInt(event.target.getAttribute('data-edit-id')) === Number.parseInt(data.entries[entryIndex].entryId)) {
       data.editing = data.entries[entryIndex];
       break;
     }
   }
+  $form.elements.tags.value = data.editing.tags;
   $form.elements.title.value = data.editing.title;
   $photoDisplay.setAttribute('src', data.editing.photoURL);
   $form.elements.url.value = data.editing.photoURL;
@@ -82,14 +85,17 @@ function editEntry(event) {
 }
 
 function saveEntry(event) {
+  $editEntryHeading.classList.add('hidden');
+  $newEntryHeading.classList.remove('hidden');
+  $deleteEntry.classList.add('hidden');
   event.preventDefault();
   var obj = {};
   obj.photoURL = $form.elements.url.value;
   obj.notes = $form.elements.note.value;
   obj.title = $form.elements.title.value;
+  obj.tags = $form.elements.tags.value;
   if (data.editing !== null) {
     obj.entryId = data.editing.entryId;
-    toggleEditHeading();
   } else {
     obj.entryId = data.nextEntryId;
     data.nextEntryId++;
@@ -100,12 +106,6 @@ function saveEntry(event) {
   loadTab(data.view);
   $form.reset();
   $photoDisplay.setAttribute('src', 'images/placeholder-image-square.jpg');
-}
-
-function toggleEditHeading() {
-  $editEntryHeading.classList.toggle('hidden');
-  $newEntryHeading.classList.toggle('hidden');
-  $deleteEntry.classList.toggle('hidden');
 }
 
 function updatePhoto(event) {
@@ -124,6 +124,7 @@ function createLi(obj) {
   //         <h2>obj.title</h2>
   //         <i class fa-solid fa-pen></i>
   //       </div>
+  //       <p>Tags:<span>tag1</span><span>tag2</span>
   //       <p>obj.note</p>
   //     </div>
   //   </li>
@@ -136,26 +137,46 @@ function createLi(obj) {
   var $img = document.createElement('img');
   var $h2 = document.createElement('h2');
   var $icon = document.createElement('i');
-  var $p = document.createElement('p');
+  var $tagContainer = document.createElement('div');
+  var $note = document.createElement('p');
+  var $tagheading = document.createElement('p');
+  if (obj.tags !== undefined) {
+    var tags = obj.tags.split(',');
+  } else {
+    tags = 0;
+  }
 
-  $p.textContent = obj.notes;
+  $note.textContent = obj.notes;
   $h2.textContent = obj.title;
   $img.setAttribute('src', obj.photoURL);
   $icon.setAttribute('data-edit-id', obj.entryId);
+  $tagheading.textContent = 'Tags:';
 
   $li.className = 'row';
-  $imgDiv.className = 'col-half';
-  $textDiv.className = 'col-half';
-  $img.className = 'width-full';
-  $icon.className = 'fas fa-pen text-right center-height';
-  $headerDiv.className = 'flex separate-content';
-  $li.classList.add('entry-' + obj.entryId);
   $li.classList.add('entry');
+  $li.classList.add('entry-' + obj.entryId);
+  $imgDiv.className = 'col-half';
+  $img.className = 'width-full';
+  $textDiv.className = 'col-half';
+  $headerDiv.className = 'flex separate-content';
+  $icon.className = 'fas fa-pen text-right center-height';
+  $tagContainer.className = 'tag-container';
+  $tagheading.className = 'tag-heading';
 
+  if (tags) {
+    for (var tagIndex = 0; tagIndex < tags.length; tagIndex++) {
+      var $tag = document.createElement('p');
+      $tag.textContent = tags[tagIndex];
+      $tag.className = 'tag';
+      $tagContainer.appendChild($tag);
+    }
+  }
+  $tagContainer.prepend($tagheading);
   $headerDiv.appendChild($h2);
   $headerDiv.appendChild($icon);
   $textDiv.appendChild($headerDiv);
-  $textDiv.appendChild($p);
+  $textDiv.appendChild($tagContainer);
+  $textDiv.appendChild($note);
   $imgDiv.appendChild($img);
   $li.appendChild($imgDiv);
   $li.appendChild($textDiv);
@@ -172,6 +193,7 @@ function displayNewEntry(obj) {
     var oldLiElement = document.querySelector('.entry-' + obj.entryId);
     var editedLiElement = createLi(obj);
     oldLiElement.replaceWith(editedLiElement);
+    data.editing = null;
   } else {
     var liElement = createLi(obj);
     var topEntry = document.querySelector('li.entry');
