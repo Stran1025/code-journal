@@ -167,6 +167,7 @@ function createLi(obj) {
   $icon.className = 'fas fa-pen text-right center-height';
   $tagContainer.className = 'tag-container';
   $tagheading.className = 'tag-heading';
+  $date.className = 'date';
 
   if (tags) {
     for (var tagIndex = 0; tagIndex < tags.length; tagIndex++) {

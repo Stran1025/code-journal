@@ -173,3 +173,7 @@ a:hover {
 li:nth-child(even) {
   background-color: rgb(226, 226, 226);
 }
+
+.date {
+  color: rgb(138, 138, 221);
+}
