@@ -66,7 +66,9 @@ function editEntry(event) {
   if (!event.target.hasAttribute('data-edit-id')) {
     return;
   }
-  toggleEditHeading();
+  $editEntryHeading.classList.remove('hidden');
+  $newEntryHeading.classList.add('hidden');
+  $deleteEntry.classList.remove('hidden');
   for (var entryIndex = 0; entryIndex < data.entries.length; entryIndex++) {
     if (Number.parseInt(event.target.getAttribute('data-edit-id')) === Number.parseInt(data.entries[entryIndex].entryId)) {
       data.editing = data.entries[entryIndex];
@@ -83,6 +85,9 @@ function editEntry(event) {
 }
 
 function saveEntry(event) {
+  $editEntryHeading.classList.add('hidden');
+  $newEntryHeading.classList.remove('hidden');
+  $deleteEntry.classList.add('hidden');
   event.preventDefault();
   var obj = {};
   obj.photoURL = $form.elements.url.value;
@@ -91,7 +96,6 @@ function saveEntry(event) {
   obj.tags = $form.elements.tags.value;
   if (data.editing !== null) {
     obj.entryId = data.editing.entryId;
-    toggleEditHeading();
   } else {
     obj.entryId = data.nextEntryId;
     data.nextEntryId++;
@@ -102,12 +106,6 @@ function saveEntry(event) {
   loadTab(data.view);
   $form.reset();
   $photoDisplay.setAttribute('src', 'images/placeholder-image-square.jpg');
-}
-
-function toggleEditHeading() {
-  $editEntryHeading.classList.toggle('hidden');
-  $newEntryHeading.classList.toggle('hidden');
-  $deleteEntry.classList.toggle('hidden');
 }
 
 function updatePhoto(event) {
@@ -192,6 +190,7 @@ function displayNewEntry(obj) {
     var oldLiElement = document.querySelector('.entry-' + obj.entryId);
     var editedLiElement = createLi(obj);
     oldLiElement.replaceWith(editedLiElement);
+    data.editing = null;
   } else {
     var liElement = createLi(obj);
     var topEntry = document.querySelector('li.entry');
