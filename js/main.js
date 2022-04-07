@@ -94,6 +94,7 @@ function saveEntry(event) {
   obj.notes = $form.elements.note.value;
   obj.title = $form.elements.title.value;
   obj.tags = $form.elements.tags.value;
+  obj.date = Date();
   if (data.editing !== null) {
     obj.entryId = data.editing.entryId;
   } else {
