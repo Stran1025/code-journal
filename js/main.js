@@ -137,18 +137,20 @@ function createLi(obj) {
   var $img = document.createElement('img');
   var $h2 = document.createElement('h2');
   var $icon = document.createElement('i');
-  var $tagContainer = document.createElement('p');
-  var $p = document.createElement('p');
+  var $tagContainer = document.createElement('div');
+  var $note = document.createElement('p');
+  var $tagheading = document.createElement('p');
   if (obj.tags !== undefined) {
     var tags = obj.tags.split(',');
   } else {
     tags = 0;
   }
 
-  $p.textContent = obj.notes;
+  $note.textContent = obj.notes;
   $h2.textContent = obj.title;
   $img.setAttribute('src', obj.photoURL);
   $icon.setAttribute('data-edit-id', obj.entryId);
+  $tagheading.textContent = 'Tags:';
 
   $li.className = 'row';
   $li.classList.add('entry');
@@ -159,21 +161,22 @@ function createLi(obj) {
   $headerDiv.className = 'flex separate-content';
   $icon.className = 'fas fa-pen text-right center-height';
   $tagContainer.className = 'tag-container';
-  $tagContainer.textContent = 'Tags:';
+  $tagheading.className = 'tag-heading';
 
   if (tags) {
     for (var tagIndex = 0; tagIndex < tags.length; tagIndex++) {
-      var $tag = document.createElement('span');
+      var $tag = document.createElement('p');
       $tag.textContent = tags[tagIndex];
       $tag.className = 'tag';
       $tagContainer.appendChild($tag);
     }
   }
+  $tagContainer.prepend($tagheading);
   $headerDiv.appendChild($h2);
   $headerDiv.appendChild($icon);
   $textDiv.appendChild($headerDiv);
   $textDiv.appendChild($tagContainer);
-  $textDiv.appendChild($p);
+  $textDiv.appendChild($note);
   $imgDiv.appendChild($img);
   $li.appendChild($imgDiv);
   $li.appendChild($textDiv);
